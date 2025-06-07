@@ -130,3 +130,8 @@ footer {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+.form-text {
+    text-align: center;
+    margin-top: 1rem;
+}
