@@ -9,6 +9,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.use(express.static('public'));
+
 
 async function startServer(){
     try{
@@ -17,7 +19,7 @@ async function startServer(){
 
         app.use('/api/products', productRoutes);
         app.use('/api/users', userRoutes);
-        app.get('/', (req, res) => {
+        app.get('/api', (req, res) => {
             res.send('Hello world from MekdisShop API');
         });
 
