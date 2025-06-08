@@ -83,7 +83,7 @@ exports.updateProduct = async (req, res) => {
 
         if(Object.keys(updateData).length === 0){
             return res.status(400).json({
-                message: 'No update dat provided.'
+                message: 'No update data provided.'
             })
         }
 
