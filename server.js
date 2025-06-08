@@ -5,6 +5,7 @@ const {connectDB, closeDB} = require('./config/db.js');
 const productRoutes = require('./routes/productRoutes.js');
 const userRoutes = require('./routes/userRoutes');
 const cartRoutes = require('./routes/cartRoutes'); 
+const orderRoutes = require('./routes/orderRoutes');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,6 +22,7 @@ async function startServer(){
         app.use('/api/products', productRoutes);
         app.use('/api/users', userRoutes);
         app.use('/api/cart', cartRoutes);
+        app.use('/api/orders', orderRoutes);
         app.get('/api', (req, res) => {
             res.send('Hello world from MekdisShop API');
         });
