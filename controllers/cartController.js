@@ -99,3 +99,76 @@ exports.addItemToCart = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+exports.updateCartItemQuantity = async (req, res) => {
+    const { productId } = req.params;
+    const { quantity } = req.body;
+    const userId = req.user._id;
+
+    if (typeof quantity !== 'number' || quantity <= 0) {
+        return res.status(400).json({ message: 'Quantity must be a positive number.' });
+    }
+
+    try {
+        const db = client.db(dbName);
+
+        const result = await db.collection(cartsCollectionName).updateOne(
+            // Filter: Find the cart for the user that contains the specific product
+            { userId: userId, "items.productId": new ObjectId(productId) },
+            // Update: Use the positional '$' operator to set the quantity of the matched item
+            { $set: { "items.$.quantity": quantity, updatedAt: new Date() } }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ message: 'Item not found in cart.' });
+        }
+
+        const updatedCart = await db.collection(cartsCollectionName).findOne({ userId: userId });
+        updatedCart.totalPrice = updatedCart.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+
+        res.status(200).json(updatedCart);
+
+    } catch (error) {
+        console.error('Error updating cart item quantity:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+
+exports.removeCartItem = async (req, res) => {
+    const { productId } = req.params;
+    const userId = req.user._id;
+
+    try {
+        const db = client.db(dbName);
+
+        const result = await db.collection(cartsCollectionName).updateOne(
+            { userId: userId },
+            { $pull: { items: { productId: new ObjectId(productId) } }, $set: { updatedAt: new Date() } }
+        );
+
+        if (result.modifiedCount === 0) {
+        
+            return res.status(404).json({ message: 'Item not found in cart.' });
+        }
+
+        const updatedCart = await db.collection(cartsCollectionName).findOne({ userId: userId });
+
+        if (!updatedCart || updatedCart.items.length === 0) {
+             return res.status(200).json({
+                _id: updatedCart ? updatedCart._id : null,
+                userId: userId,
+                items: [],
+                totalPrice: 0
+            });
+        }
+
+        updatedCart.totalPrice = updatedCart.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+
+        res.status(200).json(updatedCart);
+
+    } catch (error) {
+        console.error('Error removing item from cart:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
