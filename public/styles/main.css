@@ -203,3 +203,91 @@ footer {
 .product-card .btn {
     margin-top: auto; /* Pushes button to the bottom of the card */
 }
+
+/* Cart Page Layout */
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    align-items: flex-start;
+}
+
+.cart-items {
+    flex: 3; /* Takes up 3 parts of the space */
+}
+
+.cart-summary {
+    flex: 1; /* Takes up 1 part of the space */
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cart-summary h3 {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+/* Individual Cart Item Styling */
+.cart-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-details h4 {
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-quantity input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.cart-item-actions button {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.cart-item-actions button:hover {
+    text-decoration: underline;
+}
+
+/* Cart Summary Styling */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.total-row {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 12px;
+}
