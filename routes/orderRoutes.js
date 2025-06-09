@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createOrder, getMyOrders } = require('../controllers/orderController');
+const { createOrder, getMyOrders, getOrderById } = require('../controllers/orderController');
 const { protect } = require('../middleware/authMiddleware');
 
 // All order routes are private
@@ -10,4 +10,7 @@ router.route('/')
     .post(createOrder)
     .get(getMyOrders);
 
+
+router.route('/:id')
+    .get(getOrderById);
 module.exports = router;
