@@ -292,3 +292,49 @@ footer {
     padding: 12px;
 }
 
+/* My Orders Page Styling */
+.orders-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.order-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    align-items: center;
+}
+
+.order-card-section {
+    /* Styles for each column in the card */
+}
+
+.order-card-section h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+    font-weight: normal;
+}
+
+.order-card-section p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.order-status {
+    text-transform: capitalize;
+}
+
+.order-id {
+    font-family: monospace;
+    font-size: 0.9rem !important;
+    font-weight: normal !important;
+    word-break: break-all;
+}

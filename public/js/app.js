@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (token && userString) {
         const user = JSON.parse(userString);
         navMenuItems.innerHTML = `
-            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Home</a><li>
             <li class="nav-item"><a href="/products.html" class="nav-link">Products</a></li>
-            <li class="nav-item"><a href="/profile.html" class="nav-link">Hello, ${user.name}</a></li>
+            <li class="nav-item"><a href="/my-orders.html" class="nav-link">My Orders</a></li> 
+            <li class="nav-item"><span class="nav-link">Hello, ${user.name}</span></li>
             <li class="nav-item"><a href="/cart.html" class="nav-link">Cart</a></li>
             <li class="nav-item"><a href="#" id="logout-link" class="nav-link">Logout</a></li>
         `;
