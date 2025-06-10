@@ -96,3 +96,18 @@ exports.getOrderById = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
+
+exports.getAllOrders = async (req, res) => {
+    try {
+        const db = client.db(dbName);
+        const orders = await db.collection(ordersCollectionName)
+                               .find({})
+                               .sort({ createdAt: -1 })
+                               .toArray();
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error('Error getting all orders:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
