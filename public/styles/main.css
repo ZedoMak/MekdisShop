@@ -1,4 +1,4 @@
-/* A simple reset and default font */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +12,6 @@ body {
     color: #333;
 }
 
-/* Simple Navbar styling */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -20,6 +19,55 @@ body {
     background-color: #333;
     color: #fff;
     padding: 1rem;
+}
+
+.hero {
+    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+
+.btn-primary {
+    background-color: #f7c08a;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #f9d2a7;
+    color: #333;
+}
+
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .nav-logo {
