@@ -99,3 +99,19 @@ exports.loginUser = async (req, res) => {
 exports.getMe = async (req, res) => {
   res.status(200).json(req.user);
 };
+
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const db = client.db(dbName);
+        const users = await db.collection(usersCollectionName)
+                              .find({}, { projection: { password: 0 } })
+                              .toArray();
+        res.status(200).json(users);
+    } catch (error) {
+        console.error('Error getting all users:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+
