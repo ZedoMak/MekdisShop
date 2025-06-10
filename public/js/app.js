@@ -5,17 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     const userString = localStorage.getItem('user');
 
+    
     if (token && userString) {
+        
         const user = JSON.parse(userString);
-        navMenuItems.innerHTML = `
-            <li class="nav-item"><a href="/" class="nav-link">Home</a><li>
-            <li class="nav-item"><a href="/products.html" class="nav-link">Products</a></li>
-            <li class="nav-item"><a href="/my-orders.html" class="nav-link">My Orders</a></li> 
-            <li class="nav-item"><span class="nav-link">Hello, ${user.name}</span></li>
-            <li class="nav-item"><a href="/cart.html" class="nav-link">Cart</a></li>
-            <li class="nav-item"><a href="#" id="logout-link" class="nav-link">Logout</a></li>
-        `;
 
+        let adminLink = '';
+        if (user.isAdmin) {
+            adminLink = '<li class="nav-item"><a href="/admin.html" class="nav-link">Admin</a></li>';
+        }
+
+navMenuItems.innerHTML = `
+    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    <li class="nav-item"><a href="/products.html" class="nav-link">Products</a></li>
+    <li class="nav-item"><a href="/my-orders.html" class="nav-link">My Orders</a></li>
+    ${adminLink} 
+    <li class="nav-item"><a href="/cart.html" class="nav-link">Cart</a></li>
+    <li class="nav-item"><a href="#" id="logout-link" class="nav-link">Logout</a></li>
+`;
 
         const logoutLink = document.getElementById('logout-link');
         if (logoutLink) {

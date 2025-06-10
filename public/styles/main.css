@@ -338,3 +338,39 @@ footer {
     font-weight: normal !important;
     word-break: break-all;
 }
+
+/* Admin Dashboard Styling */
+.admin-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.admin-section {
+    background: #fff;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.admin-section h3 {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.admin-list-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-list-container th, .admin-list-container td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-list-container th {
+    background-color: #f2f2f2;
+}
