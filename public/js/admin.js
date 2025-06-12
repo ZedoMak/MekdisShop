@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             users.forEach(u => {
                 usersHtml += `
                     <tr>
-                        <td><span class="math-inline">\{u\.\_id\}</td\><td>{u.name}</td>
-<td>u.email</td><td>{u.isAdmin ? 'Yes' : 'No'}</td>
+                        <td><span class="math-inline">${u._id}</td\><td>${u.name}</td>
+<td>${u.email}</td><td>${u.isAdmin ? 'Yes' : 'No'}</td>
 </tr>
 `;
 });
@@ -57,8 +57,8 @@ const fetchOrders = async () => {
                 const orderDate = new Date(o.createdAt).toLocaleDateString();
                 ordersHtml += `
                     <tr>
-                        <td><span class="math-inline">\{o\.\_id\}</td\> <td>{o.userId}</td>
-<td>orderDate</td><td>o.totalAmount.toFixed(2)</td><td>{o.status}</td>
+                        <td><span class="math-inline">${o._id}</td\> <td>${o.userId}</td>
+<td>orderDate</td><td>${o.totalAmount.toFixed(2)}</td><td>${o.status}</td>
 </tr>
 `;
 });

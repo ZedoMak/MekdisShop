@@ -12,18 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             productGrid.innerHTML = ''; // Clear existing products
 
-products.forEach(product => {
+            products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <img src="${product.imageUrl || 'https://via.placeholder.com/250'}" alt="${product.name}" class="product-image">
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p class="price">$${product.price.toFixed(2)}</p>
-                        <p class="description">${product.description}</p>
-                        <button class="btn add-to-cart-btn" data-product-id="${product._id}">Add to Cart</button>
-                    </div>
-                `;
+               
+            productCard.innerHTML = `
+                <img src="${product.imageUrl || 'https://via.placeholder.com/250'}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="description">${product.description.substring(0, 100)}...</p>
+                    <button class="btn add-to-cart-btn" data-product-id="${product._id}">Add to Cart</button>
+                </div>
+            `;
                 productGrid.appendChild(productCard);
             });
         } catch (error) {

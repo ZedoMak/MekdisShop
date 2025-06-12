@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 
 const express = require('express');
 const {connectDB, closeDB} = require('./config/db.js');
@@ -12,6 +13,8 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use(express.static('public'));
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 
 async function startServer(){

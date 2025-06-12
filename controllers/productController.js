@@ -6,7 +6,9 @@ const collectionName = 'products';
 
 exports.createProduct = async (req, res) => {
     try{
-        const {name, description, price, category, stockQuantity, imageUrl } = req.body;
+        const {name, description, price, category, stockQuantity } = req.body;
+
+        const imageUrl = req.file ? `/uploads/${req.file.filename}` : '/images/sample.jpg';
 
         if(!name || !price || !category || !stockQuantity){
             return res.status(400).json({error: 'Please provide name, price, category, and stock quantity'});

@@ -21,13 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
             featuredProducts.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <img src="<span class="math-inline">\{product\.imageUrl</1\> \|\| 'https\://via\.placeholder\.com/250'\}" alt\="</span>{product.name}" class="product-image">
-                    <div class="product-info">
-                        <h3><span class="math-inline">\{product\.name\}</h3\><p class="price">product.price.toFixed(2)</p><pclass="description">{product.description.substring(0, 100)}...</p>
-<button class="btn add-to-cart-btn" data-product-id="${product._id}">Add to Cart</button>
-</div>
-`; featuredGrid.appendChild(productCard);
+                // In home.js
+
+            productCard.innerHTML = `
+                <img src="${product.imageUrl || 'https://via.placeholder.com/250'}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="description">${product.description.substring(0, 100)}...</p>
+                    <button class="btn add-to-cart-btn" data-product-id="${product._id}">Add to Cart</button>
+                </div>
+            `;
+                featuredGrid.appendChild(productCard);
 }); } catch (error) {
             console.error('Failed to load featured products:', error);
             featuredGrid.innerHTML = '<p>Could not load products. Please try again.</p>';
