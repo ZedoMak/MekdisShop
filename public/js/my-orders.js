@@ -34,39 +34,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const renderOrders = (orders) => {
-        ordersContainer.innerHTML = ''; // Clear loading message
+    // In public/js/my-orders.js
 
-        if (orders.length === 0) {
-            ordersContainer.innerHTML = '<h3>You have not placed any orders yet.</h3>';
-            return;
-        }
+const renderOrders = (orders) => {
+    ordersContainer.innerHTML = ''; // Clear loading message
 
-        orders.forEach(order => {
-            const orderCard = document.createElement('div');
-            orderCard.className = 'order-card';
+    if (orders.length === 0) {
+        ordersContainer.innerHTML = '<h3>You have not placed any orders yet.</h3>';
+        return;
+    }
 
-            // Format the date to be more readable
-            const orderDate = new Date(order.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric', month: 'long', day: 'numeric'
-            });
+    orders.forEach(order => {
+        const orderCard = document.createElement('div');
+        orderCard.className = 'order-card';
 
-            orderCard.innerHTML = `
-                <div class="order-card-section">
-                    <h4>Order ID</h4>
-                    <p class="order-id"><span class="math-inline">\{order\.\_id\}</p\>
-                    </div>
-                <div class="order-card-section">
+        // Format the date to be more readable
+        const orderDate = new Date(order.createdAt).toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // This block now uses the correct backtick (`) syntax
+        orderCard.innerHTML = `
+            <div class="order-card-section">
+                <h4>Order ID</h4>
+                <p class="order-id">${order._id}</p>
+            </div>
+            <div class="order-card-section">
                 <h4>Date Placed</h4>
-                <p>{orderDate}</p>
-                </div>
-                    <div class="order-card-section">
-                    <h4>Total Amount</h4>
-                    <p>$order.totalAmount.toFixed(2)</p></div><divclass="order−card−section"><h4>Status</h4><pclass="order−status">{order.status}</p>
-                </div>
-                `;
-ordersContainer.appendChild(orderCard);
-});
-};  // Initial fetch and render
-    fetchAndRenderOrders();
+                <p>${orderDate}</p>
+            </div>
+            <div class="order-card-section">
+                <h4>Total Amount</h4>
+                <p>$${order.totalAmount.toFixed(2)}</p>
+            </div>
+            <div class="order-card-section">
+                <h4>Status</h4>
+                <p class="order-status">${order.status}</p>
+            </div>
+        `;
+        ordersContainer.appendChild(orderCard);
+    });
+};  fetchAndRenderOrders();
 });

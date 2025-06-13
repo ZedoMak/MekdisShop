@@ -73,61 +73,44 @@ exports.getProductById = async (req, res) => {
     }
 }
 
+
 exports.updateProduct = async (req, res) => {
-    try{
+    try {
         const db = client.db(dbName);
         const productId = req.params.id;
-        const updateData = req.body;
+        const updateData = req.body; 
 
-        if(!ObjectId.isValid(productId)){
-            return res.status(400).json({ message: 'Invalid Product Id Format'})
+        if (!ObjectId.isValid(productId)) {
+            return res.status(400).json({ message: 'Invalid product ID format' });
         }
 
-        if(Object.keys(updateData).length === 0){
-            return res.status(400).json({
-                message: 'No update data provided.'
-            })
+        if (req.file) {
+            updateData.imageUrl = `/uploads/${req.file.filename}`;
         }
 
-        const fieldToUpdate = {...updateData};
+        updateData.updatedAt = new Date();
 
-        delete fieldToUpdate._id;
-
-        fieldToUpdate.updatedAt = new Date();
-
-        if(!fieldToUpdate.price != undefined){
-            fieldToUpdate.price = parseFloat(fieldToUpdate.price);
-        }
-
-        if(!fieldToUpdate.stockQuantity != undefined){
-            fieldToUpdate.stockQuantity = parseInt(fieldToUpdate.stockQuantity, 10);
-        }
-
+        if (updateData.price) updateData.price = parseFloat(updateData.price);
+        if (updateData.stockQuantity) updateData.stockQuantity = parseInt(updateData.stockQuantity, 10);
 
         const result = await db.collection(collectionName).updateOne(
-            {_id: new ObjectId(productId) },
-            { $set: fieldToUpdate },
-            { returnDocument: 'after'}
+            { _id: new ObjectId(productId) },
+            { $set: updateData }
         );
 
-        if(result.matchedCount === 0){
+        if (result.matchedCount === 0) {
             return res.status(404).json({ message: 'Product not found' });
-        }
-
-        if(result.modifiedCount === 0 && result.matchedCount === 1){
-            const updatedProduct = await db.collection(collectionName).findOne({ _id: new ObjectId(productId) });
-            return res.status(200).json({ message: 'Product found but no changes applied to data.', product: updatedProduct });
-
         }
 
         const updatedProduct = await db.collection(collectionName).findOne({ _id: new ObjectId(productId) });
         res.status(200).json(updatedProduct);
 
-    } catch(error){
-        console.error("Error updating product", error);
+    } catch (error) {
+        console.error('Error updating product:', error);
         res.status(500).json({ message: 'Server error while updating product' });
     }
-}
+};
+
 
 exports.deleteProduct = async (req, res) => {
     try{

@@ -10,49 +10,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 1. FETCH AND DISPLAY CART FOR SUMMARY
-    const displayCartSummary = async () => {
-        try {
-            const response = await fetch('/api/cart', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to fetch cart.');
-            const cart = await response.json();
+   // In public/js/checkout.js
 
-            if (!cart || cart.items.length === 0) {
-                alert('Your cart is empty. Redirecting to products page.');
-                window.location.href = '/products.html';
-                return;
-            }
+const displayCartSummary = async () => {
+    try {
+        const response = await fetch('/api/cart', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!response.ok) throw new Error('Failed to fetch cart.');
+        const cart = await response.json();
 
-            // Render cart items
-            orderSummaryItems.innerHTML = '';
-            cart.items.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'summary-item';
-                itemElement.innerHTML = `
-                    <span><span class="math-inline">${item.name} (x</span>${item.quantity})</span>
-                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                `;
-                orderSummaryItems.appendChild(itemElement);
-            });
-
-            // Render totals
-            orderSummaryTotal.innerHTML = `
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span><span class="math-block">${cart.totalPrice.toFixed(2)}</span></div>
-                    <div class="summary-row"> <span>Shipping</span>
-                    <span>Free</span>
-                    </div>
-                    <hr>
-                    <div class="summary-row total-row">
-                    <span>Total</span>
-                    <span>${cart.totalPrice.toFixed(2)}</span>
-                    </div>
-                    `; } catch (error) {
-            console.error('Error displaying cart summary:', error);
+        if (!cart || cart.items.length === 0) {
+            alert('Your cart is empty. Redirecting to products page.');
+            window.location.href = '/products.html';
+            return;
         }
-    }; shippingForm.addEventListener('submit', async (event) => {
+
+        orderSummaryItems.innerHTML = '';
+        cart.items.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'summary-item';
+    
+            itemElement.innerHTML = `
+                <span>${item.name} (x${item.quantity})</span>
+                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+            `;
+            orderSummaryItems.appendChild(itemElement);
+        });
+        orderSummaryTotal.innerHTML = `
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$${cart.totalPrice.toFixed(2)}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <hr>
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <span>$${cart.totalPrice.toFixed(2)}</span>
+            </div>
+        `;
+
+    } catch (error) {
+        console.error('Error displaying cart summary:', error);
+        // You can add a user-facing error message here if you like
+        orderSummaryItems.innerHTML = '<p>Could not load cart summary.</p>';
+    }
+}; shippingForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         
         const shippingAddress = {
