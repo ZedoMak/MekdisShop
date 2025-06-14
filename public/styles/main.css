@@ -526,3 +526,113 @@ footer {
     text-align: center;
     font-size: 1rem;
 }
+
+/* Toast Notification Styling */
+#toast-container {
+    position: fixed; /* Stays in place even when scrolling */
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Stays on top of all other content */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    opacity: 0; /* Start hidden */
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth transition for appear/disappear */
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0); /* Move to its final position */
+}
+
+/* Different styles for different notification types */
+.toast-success {
+    background-color: #28a745; /* Green */
+}
+
+.toast-error {
+    background-color: #dc3545; /* Red */
+}
+
+.toast-info {
+    background-color: #17a2b8; /* Blue */
+}
+
+/* Site Footer Styling */
+.site-footer {
+    background-color: #222;
+    color: #bbb;
+    padding: 40px 0;
+    margin-top: 3rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.footer-column h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #f7c08a; /* Our accent color */
+}
+
+.social-icons .social-icon {
+    display: inline-block;
+    color: #fff;
+    background-color: #444;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    background-color: #f7c08a;
+    color: #222;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 0.9rem;
+}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MekdisShop - Home</title>
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -30,16 +31,70 @@
             </div>
         </section>
 
-        <section class="featured-products">
-            <h2 class="section-title">Featured Products</h2>
-            <div id="featured-products-grid" class="product-grid-container">
-                </div>
-        </section>
+        <section class="product-showcase">
+    <h2 class="section-title">New Arrivals</h2>
+    <div id="new-arrivals-grid" class="product-grid-container">
+        </div>
+</section>
+
+<section class="product-showcase">
+    <h2 class="section-title">Clothing</h2>
+    <div id="clothing-products-grid" class="product-grid-container">
+        </div>
+</section>
+
+<section class="product-showcase">
+    <h2 class="section-title">Cosmetics</h2>
+    <div id="cosmetics-products-grid" class="product-grid-container">
+        </div>
+</section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 MekdisShop. All rights reserved.</p>
-    </footer>
+    <div id="toast-container"></div>
+
+    <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h4>Shop Categories</h4>
+            <ul>
+                <li><a href="#">Clothing</a></li>
+                <li><a href="#">Cosmetics</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">New Arrivals</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>About MekdisShop</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Customer Support</h4>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping & Returns</a></li>
+                <li><a href="#">Track Your Order</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 MekdisShop Marketplace. All rights reserved.</p>
+    </div>
+</footer>
 
     <script src="/js/app.js" defer></script> 
 <script src="/js/home.js" defer></script>

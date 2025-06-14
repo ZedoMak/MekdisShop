@@ -31,7 +31,7 @@ navMenuItems.innerHTML = `
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
 
-                alert('You have been logged out.');
+                showToast('You have been logged out.', 'info');
                 window.location.href = '/login.html';
             });
         }
@@ -47,3 +47,33 @@ navMenuItems.innerHTML = `
         `;
     }
 });
+
+// In public/js/app.js, add this function at the bottom of the file
+
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    if (!container) return; // Do nothing if container isn't on the page
+
+    // Create the toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+
+    // Add it to the container
+    container.appendChild(toast);
+
+    // Animate it in
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100); // Small delay to allow CSS transitions to work
+
+    // Set a timeout to remove the toast
+    setTimeout(() => {
+        toast.classList.remove('show');
+
+        // Remove the element from the DOM after the fade-out animation
+        toast.addEventListener('transitionend', () => {
+            toast.remove();
+        });
+    }, 4000); // Toast will be visible for 4 seconds
+}

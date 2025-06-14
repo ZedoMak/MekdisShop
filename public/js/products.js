@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('token');
 
             if (!token) {
-                alert('You must be logged in to add items to your cart.');
+                showToast('You must be logged in to add items to your cart.', 'info');
                 window.location.href = '/login.html';
                 return;
             }
@@ -60,15 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Item added to cart!');
+                   showToast('Item added to cart!');
                     
                 } else {
                     const errorData = await response.json();
-                    alert(`Failed to add item: ${errorData.message}`);
+                    showToast(`Failed to add item: ${errorData.message}`, 'error');
                 }
             } catch (error) {
                 console.error('Add to cart error:', error);
-                alert('Could not add item to cart. Please try again.');
+                showToast('Could not add item to cart. Please try again.', 'error');
             }
         }
     };

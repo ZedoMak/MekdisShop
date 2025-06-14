@@ -84,7 +84,7 @@ cart.items.forEach(item => {
              fetchAndRenderCart(); // Re-render the cart after updating
          } catch (error) {
              console.error('Error updating item:', error);
-             alert('Could not update item.');
+             showToast('Could not update item. Please try again.', 'error');
          }
     };
     
@@ -99,7 +99,7 @@ cart.items.forEach(item => {
             fetchAndRenderCart(); // Re-render the cart after removing
         } catch (error) {
             console.error('Error removing item:', error);
-            alert('Could not remove item.');
+            showToast('Could not remove item. Please try again.', 'error'); 
         }
     };
     

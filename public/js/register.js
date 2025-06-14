@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
              
-                showMessage('Registration successful! Redirecting to login...', 'success');
+                showToast('Registration successful! Redirecting...', 'success'); 
 
 
                 setTimeout(() => {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } else {
             
-                showMessage(data.message || 'An error occurred during registration.', 'error');
+                showToast(data.message || '...', 'error');
             }
 
         } catch (error) {

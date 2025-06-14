@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
               
-                showMessage('Login successful! Redirecting...', 'success');
+                showToast('Login successful! Redirecting...', 'success');
 
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data)); 
@@ -35,8 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1500);
 
             } else {
-               
-                showMessage(data.message || 'An error occurred during login.', 'error');
+                showToast(data.message || 'An error occurred during login.', 'error');
             }
 
         } catch (error) {

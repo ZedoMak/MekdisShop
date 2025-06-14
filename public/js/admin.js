@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ** CLIENT-SIDE SECURITY CHECK **
     if (!token || !user || !user.isAdmin) {
-        alert('Access Denied: Admins only.');
+        showToast('You must be an admin to access this page.', 'error');
         window.location.href = '/';
         return;
     }
@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorData.message || 'Failed to save product.');
             }
             
-            alert(`Product ${isEditMode ? 'updated' : 'created'} successfully!`);
+            showToast(`Product ${isEditMode ? 'updated' : 'created'} successfully!`, 'success');
             clearForm();
             fetchAndRenderProducts();
 
         } catch (error) {
             console.error('Error saving product:', error);
-            alert(`Error: ${error.message}`);
+            showToast(`Error: ${error.message}`, 'error');
         }
     };
 
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.scrollTo(0, 0);
             } catch (error) {
                 console.error('Error fetching product for edit:', error);
-                alert(`Error: ${error.message}`);
+                showToast(`Error: ${error.message}`, 'error');
             }
         }
 
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fetchAndRenderProducts();
             } catch (error) {
                 console.error('Error deleting product:', error);
-                alert(`Error: ${error.message}`);
+                showToast(`Error: ${error.message}`, 'error');
             }
         }
     };
